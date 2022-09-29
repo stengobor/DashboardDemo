@@ -8,7 +8,8 @@ import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const { currentColor, activeMenu, setActiveMenu, screenSize } =
+    useStateContext();
 
   const handleCloseSidebar = () => {
     if (activeMenu && screenSize <= 900) {
@@ -33,13 +34,12 @@ const Sidebar = () => {
             >
               <SiOpenai /> <span> Jemison Metals </span>
             </Link>
-            <TooltipComponent content="Menu" postion="BottomCenter">
+            <TooltipComponent content="Close" postion="BottomCenter">
               <button
                 type="button"
-                onClick={() =>
-                  setActiveMenu((prevActiveMenu) => !prevActiveMenu)
-                }
-                className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block"
+                onClick={() => setActiveMenu(!activeMenu)}
+                style={{ color: currentColor }}
+                className="text-xl rounded-full p-2 mr-2 hover:bg-light-gray mt-5 block"
               >
                 <MdOutlineCancel />
               </button>
@@ -57,6 +57,9 @@ const Sidebar = () => {
                     to={`/${Link.name}`}
                     key={Link.name}
                     onClick={handleCloseSidebar}
+                    style={({ isActive }) => ({
+                      backgroundColor: isActive ? currentColor : '',
+                    })}
                     className={({ isActive }) =>
                       isActive ? activeLink : normalLink
                     }

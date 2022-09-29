@@ -17,12 +17,13 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 import { ordersData, contextMenuItems, ordersGrid } from "../data/dummy";
+import bgimg from "../data/bg3.jpg";
 import { Header } from "../components";
 
 const OpenOrders = () => {
   const editing = { allowDeleting: true, allowEditing: true };
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 rounded-3xl bg-no-repeat bg-cover"  style={{backgroundImage: `url(${bgimg})`}}>
       <Header category="Open" title="Orders" />
       <GridComponent
         id="gridcomp"

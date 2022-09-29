@@ -3,16 +3,21 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 
 import { Stacked, Pie, Button, SparkLine } from "../components";
+import { Line, Area } from ".";
+
 import {
   earningData,
   SparklineAreaData,
   ecomPieChartData,
 } from "../data/dummy";
+
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Home = () => {
+  const { currentColor } = useStateContext();
+
   return (
-    <div className="mt-12">
+    <div className="mt-12 bg-no-repeat bg-cover">
       <div className="flex flex-wrap lg:flex-nowrap justify-center">
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repeat bg-cover bg-center">
           <div className="flex justify-between items-center">
@@ -25,7 +30,7 @@ const Home = () => {
           <div className="mt-6">
             <Button
               color="white"
-              bgColor="blue"
+              bgColor={currentColor}
               text="Download"
               borderRadius="10px"
               size="md"
@@ -58,7 +63,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex gap-10 flex-wrap justify-center">
+      <div className="flex gap-3 flex-wrap justify-center">
+        <div className="md:w-780">
+          <Line width="620px" height="360px" />
+        </div>
         <div className="bg-yellow-100 dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-5 rounded-2xl md:w-780">
           <div className="flex justify-between">
             <p className="font-semibold text-xl">Revenue Updates</p>
@@ -79,7 +87,7 @@ const Home = () => {
           </div>
 
           <div className="rounded-xl mt-10 flex gap-10 flex-wrap justify-center">
-            <div className="border-r-1 border-color m-4 pr-10">
+            <div className="border-1 border-color m-1 p-3">
               <div>
                 <p>
                   <span className="text-3xl font-semibold">$93,438</span>
@@ -98,29 +106,27 @@ const Home = () => {
 
               <div className="mt-5">
                 <SparkLine
-                  currentColor="blue"
+                  currentColor={currentColor}
                   id="line-sparkline"
                   type="Line"
-                  height="80px"
+                  height="180px"
                   width="250px"
                   data={SparklineAreaData}
-                  color="blue"
+                  color="black"
                   bgColor="white"
                 />
               </div>
               <div className="mt-10">
-                <Button 
-                color="white"
-                bgColor="blue"
-                text="Download Report"
-                borderRadius="10px"
+                <Button
+                  color="white"
+                  bgColor={currentColor}
+                  text="Download Report"
+                  borderRadius="10px"
                 />
               </div>
             </div>
             <div>
-              <Stacked width="320px" height="360px"
-              
-              />
+              <Stacked />
             </div>
           </div>
         </div>
